@@ -18,4 +18,4 @@ clean:
 
 .SUFFIXES: .c .o
 
-.PHONY: all
+.PHONY: all clean
