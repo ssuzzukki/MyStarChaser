@@ -13,6 +13,9 @@ game.o: game.c
 .c.o:
 	cc -c $< $(CFLAGS)
 
+clean:
+	-rm *.o
+
 .SUFFIXES: .c .o
 
 .PHONY: all
