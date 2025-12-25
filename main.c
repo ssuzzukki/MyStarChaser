@@ -6,7 +6,7 @@
 
 int Title(void){
         erase();
-        mvaddstr(1, 3, "STAR CHASER");
+        mvaddstr(1, 3, "Star Chaser");
         mvaddstr(3, 3, "Key:");
         mvaddstr(5, 3, "start:[s]");
         mvaddstr(6, 3, "quit :[q]");
