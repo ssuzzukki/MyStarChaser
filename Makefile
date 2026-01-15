@@ -18,6 +18,8 @@ timer.o: timer.c
 clean:
 	-rm *.o
 
+rmmain:
+	-rm main
 .SUFFIXES: .c .o
 
-.PHONY: all clean
+.PHONY: all clean rmmain
