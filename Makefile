@@ -1,16 +1,18 @@
 CFLAGS = -DDEBUG -Wall
 #CFLAGS = -Wall
 
-all: main.o game.o timer.o
+all: main.o game.o timer.o player.o
 
 main: main.c
-	cc main.o game.o timer.o -lncurses -o main
+	cc main.o game.o timer.o player.o -lncurses -o main
 
 main.o: main.c game.h
 
-game.o: game.c
+game.o: game.c timer.h player.h
 
 timer.o: timer.c
+
+player.o: player.c player.h
 
 .c.o:
 	cc -c $< $(CFLAGS)
