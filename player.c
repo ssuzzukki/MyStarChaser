@@ -2,8 +2,9 @@
 #include <stdlib.h>
 #include <ncurses.h>
 
-struct Player *newP(void){
-	struct Player p = (Player)malloc(sizeof(Player));;
+Player newP(void){
+//	struct Player *p = (Player *)malloc(sizeof(Player));
+	Player p;
 	p.x = 0;
 	p.y = 0;
 	p.vx = 0;
@@ -12,14 +13,14 @@ struct Player *newP(void){
 	p.ay = 0;
 	p.hp = 100;
 
-	return &p;
+	return p;
 }
 
-void mvP(int y, int x, struct Player *p){
+void mvP(int y, int x, Player *p){
 	p->x = x;
 	p->y = y;
 }
 
-void printP(struct Player *p){
+void printP(Player *p){
 	mvaddch(p->y, p->x, 'P');
 }
