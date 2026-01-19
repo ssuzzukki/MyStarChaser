@@ -3,7 +3,6 @@
 #include <ncurses.h>
 
 Player newP(void){
-//	struct Player *p = (Player *)malloc(sizeof(Player));
 	Player p;
 	p.x = 0;
 	p.y = 0;
@@ -23,4 +22,15 @@ void mvP(int y, int x, Player *p){
 
 void printP(Player *p){
 	mvaddch(p->y, p->x, 'P');
+}
+
+void jump(Player *p){
+	p->vy = 5;
+};
+
+void incP(Player *p){
+	p->x = p->x + p->vx;
+	p->y = p->y + p->vy;
+	p->vx = p->vx + p->ax;
+	p->vy = p->vy + p->ay;
 }
