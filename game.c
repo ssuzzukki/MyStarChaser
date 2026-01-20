@@ -11,6 +11,7 @@ void Game(void){
 	int i;
 	Player p = newP();
 
+	timeout(100);
 	getmaxyx(stdscr, h, w);
 	erase();
 	int ground = h-6;
