@@ -25,7 +25,7 @@ void printP(Player *p){
 }
 
 void jump(Player *p, int *stand){
-	if(*stand == 1) p->vy = -3;
+	if(*stand == 1) p->vy = -4;
 	*stand = 0;
 };
 
