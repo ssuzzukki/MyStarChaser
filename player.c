@@ -9,7 +9,7 @@ Player newP(void){
 	p.vx = 0;
 	p.vy = 0;
 	p.ax = 0;
-	p.ay = 0;
+	p.ay = 1;
 	p.hp = 100;
 
 	return p;
@@ -24,13 +24,19 @@ void printP(Player *p){
 	mvaddch(p->y, p->x, 'P');
 }
 
-void jump(Player *p){
-	p->vy = 5;
+void jump(Player *p, int *stand){
+	if(*stand == 1) p->vy = -3;
+	*stand = 0;
 };
 
-void incP(Player *p){
+void incP(Player *p, int ground, int *stand){
 	p->x = p->x + p->vx;
-	p->y = p->y + p->vy;
 	p->vx = p->vx + p->ax;
+	p->y = p->y + p->vy;
 	p->vy = p->vy + p->ay;
+	if(p->y >= ground){
+		p->y = ground - 1;
+		p->vy = 0;
+		*stand = 1;
+	}
 }

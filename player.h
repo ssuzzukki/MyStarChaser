@@ -10,8 +10,8 @@ typedef struct{
 extern Player newP(void);
 extern void mvP(int y, int x, Player *p);
 extern void printP(Player *p);
-extern void jump(Player *p);
-extern void incP(Player *p);
+extern void jump(Player *p, int *stand);
+extern void incP(Player *p, int ground, int *stand);
 
 
 #endif

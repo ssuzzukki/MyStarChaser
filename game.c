@@ -9,6 +9,7 @@ void Game(void){
 	time_t start = time(NULL);
 	int d;
 	int i;
+	int stand = 1;
 	Player p = newP();
 
 	timeout(100);
@@ -18,6 +19,7 @@ void Game(void){
 	mvP(ground-1, w/2, &p);
 
 	while(1){
+		incP(&p, ground, &stand);
 		erase();
 		for(i=0;i<w;i++){
 			mvaddch(ground, i, '-');
@@ -32,6 +34,9 @@ void Game(void){
 		if(key == 'q') break;
 		if(key == 'a') mvP(p.y, p.x-1, &p);
 		if(key == 'd') mvP(p.y, p.x+1, &p);
+		if(key == 'w') jump(&p, &stand);
+
+
 	}
 
 
