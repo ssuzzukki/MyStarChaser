@@ -24,4 +24,8 @@ rmmain:
 	-rm main
 .SUFFIXES: .c .o
 
-.PHONY: all clean rmmain
+StarTracer:
+	make all
+	make main
+
+.PHONY: all clean rmmain StarTracer

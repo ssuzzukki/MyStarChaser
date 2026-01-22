@@ -40,3 +40,19 @@ void incP(Player *p, int ground, int *stand){
 		*stand = 1;
 	}
 }
+
+void keyP(char key, Player *p, int *stand){
+	if(key == 'a') p->vx = -1;
+	if(key == 'd') p->vx = 1;
+	if(key == 's') p->vx = 0;
+	if(*stand == 1){
+		if(key == 'w'){
+			p->vy = -5;
+			*stand = 0;
+		}
+		if(key == ' '){
+			p->vy = -3;
+			*stand = 0;
+		}
+	}
+}

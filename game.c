@@ -10,9 +10,10 @@ void Game(void){
 	int d;
 	int i;
 	int stand = 1;
+	struct timespec t = {0, 100000000}; //0.1s
 	Player p = newP();
 
-	timeout(100);
+	timeout(0);
 	getmaxyx(stdscr, h, w);
 	erase();
 	int ground = h-6;
@@ -32,9 +33,10 @@ void Game(void){
 		key = getch();
 		mvaddch(h-1, 0, key);
 		if(key == 'q') break;
-		if(key == 'a') mvP(p.y, p.x-1, &p);
-		if(key == 'd') mvP(p.y, p.x+1, &p);
-		if(key == 'w') jump(&p, &stand);
+		keyP(key, &p, &stand);
+		
+		nanosleep(&t, NULL);
+
 
 
 	}
