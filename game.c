@@ -2,6 +2,7 @@
 #include <time.h>
 #include "timer.h"
 #include "player.h"
+#include "star.h"
 
 void Game(void){
 	int h, w, key;
