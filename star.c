@@ -1,10 +1,14 @@
 #include "star.h"
 #include <ncurses.h>
+#include <stdlib.h>
+#include <time.h>
 
-Star newS(void){
+Star newS(int w, int seed){
 	Star s;
-	s.x = 0;
+	srand(seed);
+	s.x = rand() % w;
 	s.y = 0;
+	s.touch = 0;
 	return s;
 }
 
@@ -17,8 +21,13 @@ void printS(Star *s){
 	mvaddch(s->y, s->x, '*');
 }
 
-void incS(Star *s, int ground){
+void incS(Star *s, int ground, int w, int seed){
 	s->y++;
-	if(s->y > ground) s->x = -1;
+	if(s->y > ground || s->touch == 1){
+		s->y = 0;
+		s->touch = 0;
+		srand(seed);
+		s->x = rand() % w;
+	}
 }
 	

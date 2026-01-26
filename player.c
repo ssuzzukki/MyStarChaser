@@ -10,7 +10,7 @@ Player newP(void){
 	p.vy = 0;
 	p.ax = 0;
 	p.ay = 1;
-	p.hp = 100;
+	p.score = 0;
 
 	return p;
 }

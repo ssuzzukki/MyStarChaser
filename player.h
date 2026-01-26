@@ -5,7 +5,7 @@ typedef struct{
 	int x, y;
 	double vx, vy;
 	double ax, ay;
-	int hp;
+	int score;
 }Player;
 extern Player newP(void);
 extern void mvP(int y, int x, Player *p);
