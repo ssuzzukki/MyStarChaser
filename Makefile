@@ -4,7 +4,7 @@ CFLAGS = -DDEBUG -Wall
 all: main.o game.o timer.o player.o star.o
 
 main: main.c
-	cc main.o game.o timer.o player.o -lncurses -o main
+	cc main.o game.o timer.o player.o star.o -lncurses -o main
 
 main.o: main.c game.h
 
