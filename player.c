@@ -11,6 +11,7 @@ Player newP(void){
 	p.ax = 0;
 	p.ay = 1;
 	p.score = 0;
+	p.stand = 1;
 
 	return p;
 }
@@ -24,12 +25,12 @@ void printP(Player *p){
 	mvaddch(p->y, p->x, 'P');
 }
 
-void jump(Player *p, int *stand){
-	if(*stand == 1) p->vy = -4;
-	*stand = 0;
+void jump(Player *p){
+	if(p->stand == 1) p->vy = -4;
+	p->stand = 0;
 };
 
-void incP(Player *p, int ground, int *stand){
+void incP(Player *p, int ground){
 	p->x = p->x + p->vx;
 	p->vx = p->vx + p->ax;
 	p->y = p->y + p->vy;
@@ -37,22 +38,22 @@ void incP(Player *p, int ground, int *stand){
 	if(p->y >= ground){
 		p->y = ground - 1;
 		p->vy = 0;
-		*stand = 1;
+		p->stand = 1;
 	}
 }
 
-void keyP(char key, Player *p, int *stand){
+void keyP(char key, Player *p){
 	if(key == 'a') p->vx = -1;
 	if(key == 'd') p->vx = 1;
 	if(key == 's') p->vx = 0;
-	if(*stand == 1){
+	if(p->stand == 1){
 		if(key == 'w'){
 			p->vy = -5;
-			*stand = 0;
+			p->stand = 0;
 		}
 		if(key == ' '){
 			p->vy = -3;
-			*stand = 0;
+			p->stand = 0;
 		}
 	}
 }

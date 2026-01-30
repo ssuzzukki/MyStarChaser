@@ -2,12 +2,11 @@
 #include "star.h"
 #include <ncurses.h>
 
-int touch(Player *p, Star *s){
+void touch(Player *p, Star *s){
 	if(p->x == s->x && p->y == s->y){
 		s->touch = 1;
-		return 1;
+		p->score = p->score + 1 + (1 - p->stand) * 10;
 	}
-	return 0;
 }
 
 void pScore(int y, int x, Player *p){

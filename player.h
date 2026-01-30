@@ -6,13 +6,14 @@ typedef struct{
 	double vx, vy;
 	double ax, ay;
 	int score;
+	int stand;
 }Player;
 extern Player newP(void);
 extern void mvP(int y, int x, Player *p);
 extern void printP(Player *p);
-extern void jump(Player *p, int *stand);
-extern void incP(Player *p, int ground, int *stand);
-extern void keyP(char key, Player *p, int *stand);
+extern void jump(Player *p);
+extern void incP(Player *p, int ground);
+extern void keyP(char key, Player *p);
 
 
 #endif
