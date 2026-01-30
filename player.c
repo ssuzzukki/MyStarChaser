@@ -10,7 +10,7 @@ Player newP(void){
 	p.vy = 0;
 	p.ax = 0;
 	p.ay = 1;
-	p.hp = 100;
+	p.score = 0;
 
 	return p;
 }
@@ -25,7 +25,7 @@ void printP(Player *p){
 }
 
 void jump(Player *p, int *stand){
-	if(*stand == 1) p->vy = -3;
+	if(*stand == 1) p->vy = -4;
 	*stand = 0;
 };
 
@@ -38,5 +38,21 @@ void incP(Player *p, int ground, int *stand){
 		p->y = ground - 1;
 		p->vy = 0;
 		*stand = 1;
+	}
+}
+
+void keyP(char key, Player *p, int *stand){
+	if(key == 'a') p->vx = -1;
+	if(key == 'd') p->vx = 1;
+	if(key == 's') p->vx = 0;
+	if(*stand == 1){
+		if(key == 'w'){
+			p->vy = -5;
+			*stand = 0;
+		}
+		if(key == ' '){
+			p->vy = -3;
+			*stand = 0;
+		}
 	}
 }
