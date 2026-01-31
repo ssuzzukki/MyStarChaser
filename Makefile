@@ -8,7 +8,7 @@ main: main.c
 
 main.o: main.c game.h
 
-game.o: game.c timer.h player.h
+game.o: game.c timer.h player.h star.h score.h
 
 timer.o: timer.c
 

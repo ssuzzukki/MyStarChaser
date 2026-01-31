@@ -4,10 +4,6 @@
 
 #include "game.h"
 
-void Title_StarChaser(void){
-	int key;
-	timeout(-1);
-
 
 void Title_Sudachi(void){
 	int key;
@@ -34,6 +30,10 @@ void Title_Sudachi(void){
 		if(key == 'q') break;
 	}
 }
+
+void Title_StarChaser(void){
+	int key;
+	timeout(-1);
 
 	while(1){
         	refresh();
@@ -88,16 +88,18 @@ int Title_StarTracer(int score){
 	printw("LAST SCORE : %d", score);
 
         refresh();
-        return (getch());
+	return getch();
 }
 
 
 
 
-
+// Game()を動かすとセグフォが出る
+// 最初の一行すら動いてないのでmainが悪いかも
 int main(void){
 	int h, w, key;
 	int score = 0;
+	int sec = 90;
 	initscr();
 	noecho();
 	curs_set(0);
@@ -109,10 +111,9 @@ int main(void){
 
 	while(1){
 		key = Title_StarTracer(score);
-		if(key == 's') score = Game(90);
+		if(key == 's') score = Game(sec);
 		if(key == 'S') Title_StarChaser();
 		if(key == 'q') break;
-
 	}
 	endwin();
 	return 0;

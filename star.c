@@ -3,12 +3,12 @@
 #include <stdlib.h>
 #include <time.h>
 
-Star newS(int w, int seed){
-	Star s;
+Star *newS(int w, int seed){
+	Star *s;
 	srand(seed);
-	s.x = rand() % w;
-	s.y = 0;
-	s.touch = 0;
+	s->x = rand() % w;
+	s->y = 0;
+	s->touch = 0;
 	return s;
 }
 

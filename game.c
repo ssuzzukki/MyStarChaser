@@ -1,48 +1,75 @@
 #include <ncurses.h>
 #include <time.h>
-#include <unistd.h>
 #include "timer.h"
 #include "player.h"
 #include "star.h"
 #include "score.h"
 
-int Game(sec){
+#include <stdlib.h>
+#include <unistd.h>
+
+int Game(int sec){
+	
+	erase();
+	
 	int h, w, key;
 	time_t start = time(NULL);
 	int d;
 	int i;
 	int fin = 0;
 	int seed = 0;
-	struct timespec t = {0, 100000000}; //0.1s
+//	struct timespec t = {0, 100000000 * 10}; //0.1s
 	Player p = newP();
+	int snum = 6;
+	//Star *stars[20];
+	Star **stars = calloc(10, sizeof(Star *));
 
 	timeout(0);
 	getmaxyx(stdscr, h, w);
 
-	Star s1 = newS(w, seed+0);
-	Star s2 = newS(w, seed+1);
-	Star s3 = newS(w, seed+2);
-	Star s4 = newS(w, seed+3);
-	Star s5 = newS(w, seed+4);
-	Star s6 = newS(w, seed+5);
+/*
+	for(i=0;i<snum;i++){
+		stars[i] = newS(w, seed+i);
+	}
+*/
+	stars[1] = newS(w, seed+1);
+	stars[2] = newS(w, seed+2);
+	stars[3] = newS(w, seed+3);
+	stars[4] = newS(w, seed+4);
+	stars[5] = newS(w, seed+5);
+	stars[6] = newS(w, seed+6);
+
 	erase();
 	int ground = h-6;
 	mvP(ground-1, w/2, &p);
 
 	while(1){
 		incP(&p, ground);
-		incS(&s1, ground, w, seed+0);
-		incS(&s2, ground, w, seed+1);
-		incS(&s3, ground, w, seed+2);
-		incS(&s4, ground, w, seed+3);
-		incS(&s5, ground, w, seed+4);
-		incS(&s6, ground, w, seed+5);
-		touch(&p, &s1);
-		touch(&p, &s2);
-		touch(&p, &s3);
-		touch(&p, &s4);
-		touch(&p, &s5);
-		touch(&p, &s6);
+/*
+		for(i=0;i<snum;i++){
+			incS(stars[i], ground, w, seed+i);
+		}
+*/
+		incS(stars[1], ground, w, seed+1);
+		//incS(stars[2], ground, w, seed+2);
+		//incS(stars[3], ground, w, seed+3);
+		//incS(stars[4], ground, w, seed+4);
+		//incS(stars[5], ground, w, seed+5);
+		//incS(stars[6], ground, w, seed+6);
+
+		
+/*
+		for(i=0;i<snum;i++){
+			touch(&p, stars[i]);
+		}
+*/
+		touch(&p, stars[1]);
+		touch(&p, stars[2]);
+		touch(&p, stars[3]);
+		touch(&p, stars[4]);
+		touch(&p, stars[5]);
+		touch(&p, stars[6]);
+
 		erase();
 
 		pScore(h-1, w-20, &p);
@@ -50,12 +77,26 @@ int Game(sec){
 			mvaddch(ground, i, '-');
 		}
 
-		printS(&s1);
-		printS(&s2);
-		printS(&s3);
-		printS(&s4);
-		printS(&s5);
-		printS(&s6);
+/*
+		for(i=0;i<snum;i++){
+			printS(stars[i]);
+		}
+*/
+		printS(stars[1]);
+		printS(stars[2]);
+		printS(stars[3]);
+		printS(stars[4]);
+		printS(stars[5]);
+		printS(stars[6]);
+
+
+		move(0,0);
+		printw("%d, %d", stars[1]->x, stars[1]->y);
+		move(1,0);
+		printw("%d, %d", stars[2]->x, stars[1]->y);
+		move(2,0);
+		printw("%d, %d", stars[3]->x, stars[1]->y);
+		
 		printP(&p);
 
 		d = diffsec(start);
@@ -66,11 +107,13 @@ int Game(sec){
 		if(key == 'q') break;
 		keyP(key, &p);
 		
-		nanosleep(&t, NULL);
+//		nanosleep(&t, NULL);
+		usleep(100000); // 0.1s
 		
 		seed++;
 
 
 	}
+	free(stars);
 	return p.score;
 }
