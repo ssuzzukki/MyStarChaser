@@ -3,12 +3,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-Star *newS(int w, int seed){
-	Star *s;
+
+Star *initS(Star *s, int w, int seed){
 	srand(seed);
 	s->x = rand() % w;
-	s->y = 0;
+	s->y = -(s->x % 10);
 	s->touch = 0;
+	s->seed = seed;
 	return s;
 }
 
@@ -21,13 +22,14 @@ void printS(Star *s){
 	mvaddch(s->y, s->x, '*');
 }
 
-void incS(Star *s, int ground, int w, int seed){
+
+void moveS(Star *s, int ground, int w, int sec, int turn){
 	s->y++;
+
 	if(s->y > ground || s->touch == 1){
-		s->y = 0;
 		s->touch = 0;
-		srand(seed);
-		s->x = rand() % w;
+		s->x = ((s->x + s->seed) * sec * turn) % w;
+		s->y = -(s->x % 10);
 	}
 }
 	
