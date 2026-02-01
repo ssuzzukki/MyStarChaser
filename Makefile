@@ -1,5 +1,5 @@
-#CFLAGS = -DDEBUG -Wall
-CFLAGS = -Wall
+CFLAGS = -DDEBUG -Wall
+#CFLAGS = -Wall
 
 all: main.o game.o timer.o player.o star.o score.o
 
@@ -8,7 +8,7 @@ main: main.c
 
 main.o: main.c game.h
 
-game.o: game.c timer.h player.h
+game.o: game.c timer.h player.h star.h score.h
 
 timer.o: timer.c
 
